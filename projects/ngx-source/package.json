@@ -1,12 +1,12 @@
 {
   "name": "ngx-source",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0"
+    "@angular/common": "~6.1.10",
+    "@angular/core": "~6.1.10"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^1.9.0"
   },
   "repository": {
     "type": "git",
