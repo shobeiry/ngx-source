@@ -42,6 +42,13 @@ export class NgxSourceService {
     }
   }
 
+  public loadSources(sources: ISource[]): Promise<any> {
+    this.addSources(...sources);
+    const promises: any[] = [];
+    sources.forEach((source) => promises.push(this.loadSource(source)));
+    return Promise.all(promises);
+  }
+
   public loadSource(source: ISource): Promise<any> {
     this.addSource(source);
     return new Promise<any>((resolve) => {
