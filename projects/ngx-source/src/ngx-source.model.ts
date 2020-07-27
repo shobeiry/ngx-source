@@ -14,5 +14,3 @@ export class Source implements ISource {
                 public loaded?: boolean) {
     }
 }
-
-

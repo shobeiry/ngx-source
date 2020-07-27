@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {ISource} from './ngx-source.model';
 import {SourceType} from './ngx-source-type.model';
+import {ISource} from './ngx-source.model';
+
 
 declare var document: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NgxSourceService {
 
@@ -14,20 +15,19 @@ export class NgxSourceService {
     constructor() {
     }
 
-    addSource(...sources: ISource[]): void {
-        sources.forEach(source => this.sources.push(source));
+    public addSource(...sources: ISource[]): void {
+        sources.forEach((source) => this.sources.push(source));
     }
 
-    load(...scripts: string[]): Promise<any> {
+    public load(...scripts: string[]): Promise<any> {
         const promises: any[] = [];
-        scripts.forEach(script => promises.push(this.loadScript(script)));
+        scripts.forEach((script) => promises.push(this.loadScript(script)));
         return Promise.all(promises);
     }
 
-    loadScript(name: string): Promise<any> {
+    public loadScript(name: string): Promise<any> {
         return new Promise((resolve) => {
-
-            const source = this.sources.find(value => value.name === name);
+            const source = this.sources.find((value) => value.name === name);
             if (!source) { // resolve if not find
                 resolve({script: name, loaded: false, status: 'Not Find in Source Store'});
             } else if (source.loaded) { // resolve if already loaded
