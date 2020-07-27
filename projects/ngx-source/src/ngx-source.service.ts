@@ -9,11 +9,9 @@ declare var document: any;
 })
 export class NgxSourceService {
 
-  private sources: ISource[];
+  private sources: ISource[] = [];
 
-  constructor(sources: ISource[]) {
-    this.sources = [];
-    this.addSources(...sources);
+  constructor() {
   }
 
   public addSources(...sources: ISource[]): void {
@@ -34,14 +32,14 @@ export class NgxSourceService {
   }
 
   public loadBySourceName(sourceName: string): Promise<any> {
-    return new Promise((resolve) => {
-      const source = this.sources.find((value) => value.name === sourceName);
-      if (!source) { // resolve if not find
+    const source = this.sources.find((value) => value.name === sourceName);
+    if (!source) { // resolve if not find
+      return new Promise((resolve) => {
         resolve({script: sourceName, loaded: false, status: 'Not Find in Source Store'});
-      } else {
-        return Promise.all([this.loadSource(source)]);
-      }
-    });
+      });
+    } else {
+      return this.loadSource(source);
+    }
   }
 
   public loadSource(source: ISource): Promise<any> {
