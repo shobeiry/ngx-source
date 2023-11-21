@@ -1,0 +1,31 @@
+{
+  "name": "ngx-source",
+  "version": "13.0.1",
+  "author": "Sajad Mehrabi",
+  "description": "Angular resource loader",
+  "license": "MIT",
+  "keywords": [
+    "ngx",
+    "ng",
+    "nga",
+    "avan",
+    "angular",
+    "soure loader",
+    "resoure loader",
+    "library",
+    "ngx resoure loader"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehrabisajad/ngx-source.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mehrabisajad/ngx-source/issues"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=13"
+  }
+}

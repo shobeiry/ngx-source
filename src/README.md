@@ -1,4 +1,5 @@
 # ngx source
+
 angular source, can load js and css in runtime
 
 [![npm version](https://badge.fury.io/js/ngx-source.svg)](http://badge.fury.io/js/ngx-source)
@@ -9,34 +10,35 @@ angular source, can load js and css in runtime
 ## Installation
 
 Install through npm:
+
 ```
 npm install --save ngx-source
 ```
 
 use in one of your apps components:
+
 ```typescript
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { Source, SourceType, NgxSourceService } from 'ngx-source';
 
 @Component({
-  template: 'your-component'
+  template: 'your-component',
 })
 export class YourComponent implements OnInit {
+  constructor(private ngxSourceService: NgxSourceService) {
+    this.ngxSourceService.addSources([
+      new Source('yourJsName', '/js/yourJsFile.js', SourceType.SCRIPT),
+      new Source('yourCssName', '/css/yourCssFile.js', SourceType.STYLE),
+    ]);
+  }
 
-    constructor(private ngxSourceService: NgxSourceService) {
-        this.ngxSourceService.addSources([
-            new Source('yourJsName', '/js/yourJsFile.js', SourceType.SCRIPT),
-            new Source('yourCssName', '/css/yourCssFile.js', SourceType.STYLE)
-        ]);
-    }
-    
-    async ngOnInit() {
-        await this.ngxSourceService.loadBySourceName('yourJsName');
-        await this.ngxSourceService.loadBySourceName('yourCssName');
-        
-        // or
+  async ngOnInit() {
+    await this.ngxSourceService.loadBySourceName('yourJsName');
+    await this.ngxSourceService.loadBySourceName('yourCssName');
 
-        await this.ngxSourceService.loadBySourceNames('yourJsName', 'yourCssName');
-    }   
+    // or
+
+    await this.ngxSourceService.loadBySourceNames('yourJsName', 'yourCssName');
+  }
 }
 ```
